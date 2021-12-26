@@ -1,0 +1,29 @@
+name: Maven settings
+description: ...
+author: Erlend Klakegg Bergheim
+
+inputs:
+  profile:
+    description: Profile
+    required: false
+  servers:
+    description: Servers
+    required: false
+  repositories:
+    description: Repositories
+    required: false
+  path:
+    description: Path
+    required: false
+  include:
+    description: List of repositories to include
+    required: false
+
+branding:
+  color: green
+  icon: settings
+
+runs:
+  using: node12
+  main: index.js
+  post: cleanup.js
