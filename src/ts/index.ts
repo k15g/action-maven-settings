@@ -28,6 +28,8 @@ async function run() {
     include_repos.forEach(repo => {
         if (repo in repos.library) {
             repositories[repo] = repos.library[repo]
+        } else {
+            core.warning(`Repository '${repo}' is unknown.`)
         }
     });
 
