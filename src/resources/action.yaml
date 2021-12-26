@@ -6,7 +6,6 @@ inputs:
   profile:
     description: Profile
     required: false
-    default: github
   servers:
     description: Servers
     required: false
@@ -16,7 +15,6 @@ inputs:
   path:
     description: Path
     required: false
-    default: .m2/settings.xml
 
 branding:
   color: green
