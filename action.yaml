@@ -1,0 +1,28 @@
+name: Maven settings
+description: ...
+author: Erlend Klakegg Bergheim
+
+inputs:
+  profile:
+    description: Profile
+    required: false
+    default: github
+  servers:
+    description: Servers
+    required: false
+  repositories:
+    description: Repositories
+    required: false
+  path:
+    description: Path
+    required: false
+    default: .m2/settings.xml
+
+branding:
+  color: green
+  icon: settings
+
+runs:
+  using: node12
+  main: index.js
+  post: post.js
