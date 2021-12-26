@@ -29,7 +29,7 @@ async function run() {
     let servers = servs.defaults;
     servers = merge(servers, yaml.load(core.getInput('servers', { required: false })) || {});
     for (const [id, value] of Object.entries(servers)) {
-        doc.settings.servers['server'].push({ id, ...value });
+        doc.settings.servers.server.push({ id, ...value });
     }
     const path_location = core.getInput('path', { required: false }) || `${os.homedir}/.m2/settings.xml`;
     fs.mkdirSync(path.dirname(path_location), { recursive: true });

@@ -4,6 +4,6 @@ exports.defaults = void 0;
 exports.defaults = {
     github: {
         username: '${env.GITHUB_ACTOR}',
-        password: '${env.GITHUB_TOKEN}'
+        password: '${env.GITHUB_TOKEN}',
     }
 };

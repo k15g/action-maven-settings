@@ -3,29 +3,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.library = exports.defaults = void 0;
 exports.defaults = {
     central: {
-        url: 'https://repo1.maven.org/maven2'
-    }
+        url: 'https://repo1.maven.org/maven2',
+    },
 };
 exports.library = {
+    sonatype: {
+        name: 'Sonatype Repository',
+        url: 'https://oss.sonatype.org/content/repositories/releases/',
+    },
     'spring-releases': {
         name: 'Spring Releases',
         url: 'https://repo.spring.io/release',
         snapshots: {
-            enabled: false
-        }
+            enabled: false,
+        },
     },
     'spring-snapshots': {
         name: 'Spring Snapshots',
         url: 'https://repo.spring.io/snapshot',
         releases: {
-            enabled: false
+            enabled: false,
         },
         snapshots: {
-            enabled: true
-        }
-    },
-    sonatype: {
-        name: 'Sonatype Repository',
-        url: 'https://oss.sonatype.org/content/repositories/releases/',
+            enabled: true,
+        },
     },
 };
