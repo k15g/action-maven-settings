@@ -21,6 +21,9 @@ async function run() {
         if (repo in repos.library) {
             repositories[repo] = repos.library[repo];
         }
+        else {
+            core.warning(`Repository '${repo}' is unknown.`);
+        }
     });
     repositories = merge(repositories, yaml.load(core.getInput('repositories', { required: false })) || {});
     for (const [id, value] of Object.entries(repositories)) {
