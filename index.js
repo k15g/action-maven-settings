@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const xmlbuilder2_1 = require("xmlbuilder2");
+const merge = require("lodash.merge");
+const xmlbuilder = require("xmlbuilder2");
 const core = require("@actions/core");
 const yaml = require("js-yaml");
-const merge = require("lodash.merge");
-const model_1 = require("./model");
+const model = require("./model");
 const fs = require("fs");
 const path = require("path");
 const os = require("os");
@@ -20,7 +20,7 @@ const default_servers = {
     }
 };
 async function run() {
-    const doc = (0, model_1.initiateDocument)();
+    const doc = model.initiateDocument();
     const profile = core.getInput('profile', { required: false }) || 'github';
     doc.settings.activeProfiles.activeProfile.push(profile);
     doc.settings.profiles.profile.id = profile;
@@ -33,8 +33,7 @@ async function run() {
         doc.settings.servers['server'].push({ id, ...value });
     }
     const path_location = core.getInput('path', { required: false }) || `${os.homedir}/.m2/settings.xml`;
-    console.log(path_location);
     fs.mkdirSync(path.dirname(path_location), { recursive: true });
-    fs.writeFileSync(path_location, (0, xmlbuilder2_1.create)(doc).end({ prettyPrint: true }));
+    fs.writeFileSync(path_location, xmlbuilder.create(doc).end({ prettyPrint: true }));
 }
 run();
