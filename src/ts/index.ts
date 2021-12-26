@@ -2,25 +2,12 @@ import merge = require('lodash.merge')
 import * as xmlbuilder from 'xmlbuilder2'
 import * as core from '@actions/core'
 import * as yaml from 'js-yaml'
-import * as model from './model'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as os from 'os'
-
-// Default repositories
-const default_reposetories = {
-    central: {
-        url: 'https://repo1.maven.org/maven2'
-    }
-}
-
-// Default servers
-const default_servers = {
-    github: {
-        username: '${env.GITHUB_ACTOR}',
-        password: '${env.GITHUB_TOKEN}'
-    }
-}
+import * as model from './model'
+import * as repos from './repos'
+import * as servs from './servers'
 
 async function run() {
     // Initiate document
@@ -31,19 +18,37 @@ async function run() {
     doc.settings.activeProfiles.activeProfile.push(profile)
     doc.settings.profiles.profile.id = profile
 
-    // Load repositories
-    const repositories = merge(default_reposetories, yaml.load(core.getInput('repositories', { required: false })) || {})
+
+    // REPOSITORIES
+    let repositories = repos.defaults
+
+    // Include additional known repos
+    let include_repos = yaml.load(core.getInput('include', { required: false })) as string[] || []
+
+    include_repos.forEach(repo => {
+        if (repo in repos.library) {
+            repositories[repo] = repos.library[repo]
+        }        
+    });
+
+    // Load repositories from input
+    repositories = merge(repositories, yaml.load(core.getInput('repositories', { required: false })) || {})
 
     for (const [id, value] of Object.entries(repositories)) {
         doc.settings.profiles.profile.repositories.repository.push({ id, ...value })
     }
 
-    // Load servers
-    const servers = merge(default_servers, yaml.load(core.getInput('servers', { required: false })) || {})
+
+    // SERVERS
+    let servers = servs.defaults
+
+    // Load servers from input
+    servers = merge(servers, yaml.load(core.getInput('servers', { required: false })) || {})
 
     for (const [id, value] of Object.entries(servers)) {
         doc.settings.servers['server'].push({ id, ...value })
     }
+
 
     // Write to settings file
     const path_location = core.getInput('path', { required: false }) || `${os.homedir}/.m2/settings.xml`

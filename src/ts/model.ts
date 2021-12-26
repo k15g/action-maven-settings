@@ -28,10 +28,13 @@ interface Repositories {
     repository: Repository[]
 }
 
-interface Repository {
-    id: string
+export interface Repository {
+    id?: string
+    name?: string
     url: string
-    snapshot?: Snapshot
+    snapshots?: Snapshot
+    releases?: Snapshot
+    layout?: string
 }
 
 interface Snapshot {
@@ -39,7 +42,13 @@ interface Snapshot {
 }
 
 interface Servers {
-    server: any
+    server: Server[]
+}
+
+export interface Server {
+    id?: string
+    username?: string
+    password?: string
 }
 
 export function initiateDocument() {

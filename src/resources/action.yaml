@@ -15,6 +15,9 @@ inputs:
   path:
     description: Path
     required: false
+  include:
+    description: List of repositories to include
+    required: false
 
 branding:
   color: green
@@ -23,4 +26,4 @@ branding:
 runs:
   using: node12
   main: index.js
-  post: post.js
+  post: cleanup.js
