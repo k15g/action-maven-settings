@@ -1,8 +1,8 @@
-import { create } from 'xmlbuilder2'
+import merge = require('lodash.merge')
+import * as xmlbuilder from 'xmlbuilder2'
 import * as core from '@actions/core'
 import * as yaml from 'js-yaml'
-import merge = require('lodash.merge')
-import { initiateDocument } from './model'
+import * as model from './model'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as os from 'os'
@@ -24,7 +24,7 @@ const default_servers = {
 
 async function run() {
     // Initiate document
-    const doc = initiateDocument()
+    const doc = model.initiateDocument()
 
     // Load profile identifier
     const profile = core.getInput('profile', { required: false }) || 'github'
@@ -47,9 +47,8 @@ async function run() {
 
     // Write to settings file
     const path_location = core.getInput('path', { required: false }) || `${os.homedir}/.m2/settings.xml`
-    console.log(path_location)
     fs.mkdirSync(path.dirname(path_location), { recursive: true })
-    fs.writeFileSync(path_location, create(doc).end({ prettyPrint: true }))
+    fs.writeFileSync(path_location, xmlbuilder.create(doc).end({ prettyPrint: true }))
 }
 
 run()

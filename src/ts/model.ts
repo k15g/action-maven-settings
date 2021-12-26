@@ -31,6 +31,11 @@ interface Repositories {
 interface Repository {
     id: string
     url: string
+    snapshot?: Snapshot
+}
+
+interface Snapshot {
+    enabled?: boolean
 }
 
 interface Servers {
