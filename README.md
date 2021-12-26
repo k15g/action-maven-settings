@@ -47,6 +47,25 @@ Default: *empty*
 ```
 
 
+### `include` (optional)
+
+Default: *empty*
+
+```yaml
+- name: Setup settings for Maven
+  uses: k15g/action-maven-settings@edge
+  with:
+    include: |
+      - spring-releases
+```
+
+Available known repositories:
+
+* `sonatype`
+* `spring-releases`
+* `spring-snapshots`
+
+
 ### `servers` (optional)
 
 Default: *empty*

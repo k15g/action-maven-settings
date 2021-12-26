@@ -28,7 +28,7 @@ async function run() {
     include_repos.forEach(repo => {
         if (repo in repos.library) {
             repositories[repo] = repos.library[repo]
-        }        
+        }
     });
 
     // Load repositories from input
@@ -46,7 +46,7 @@ async function run() {
     servers = merge(servers, yaml.load(core.getInput('servers', { required: false })) || {})
 
     for (const [id, value] of Object.entries(servers)) {
-        doc.settings.servers['server'].push({ id, ...value })
+        doc.settings.servers.server.push({ id, ...value })
     }
 
 
