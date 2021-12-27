@@ -11,7 +11,7 @@
 
 ### `path` (optional)
 
-Default: `$HOME/.m2/settings.xml`
+Default: `${HOME}/.m2/settings.xml`
 
 ```yaml
 - name: Setup settings for Maven
@@ -61,6 +61,7 @@ Default: *empty*
 
 Available known repositories:
 
+* `github` (https://maven.pkg.github.com/${GITHUB_REPOSITORY})
 * `sonatype`
 * `spring-releases`
 * `spring-snapshots`

@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.initiateDocument = void 0;
 function initiateDocument() {
-    var doc = {
+    return {
         settings: {
             '@xmlns': 'http://maven.apache.org/SETTINGS/1.0.0',
             '@xmlns:xsi': "http://www.w3.org/2001/XMLSchema-instance",
@@ -22,6 +22,5 @@ function initiateDocument() {
             }
         }
     };
-    return doc;
 }
 exports.initiateDocument = initiateDocument;

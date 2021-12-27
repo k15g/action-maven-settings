@@ -8,7 +8,10 @@ exports.defaults = {
 };
 exports.library = {
     github: {
-        url: 'https://maven.pkg.github.com/${env.GITHUB_REPOSITORY}'
+        url: 'https://maven.pkg.github.com/${env.GITHUB_REPOSITORY}',
+        snapshots: {
+            enabled: true
+        }
     },
     sonatype: {
         name: 'Sonatype Repository',
