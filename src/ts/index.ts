@@ -37,7 +37,10 @@ async function run() {
     repositories = merge(repositories, yaml.load(core.getInput('repositories', { required: false })) || {})
 
     for (const [id, value] of Object.entries(repositories)) {
-        doc.settings.profiles.profile.repositories.repository.push({ id, ...value })
+        if (!value.ignore) {
+            delete value.ignore
+            doc.settings.profiles.profile.repositories.repository.push({ id, ...value })
+        }
     }
 
 
@@ -48,7 +51,10 @@ async function run() {
     servers = merge(servers, yaml.load(core.getInput('servers', { required: false })) || {})
 
     for (const [id, value] of Object.entries(servers)) {
-        doc.settings.servers.server.push({ id, ...value })
+        if (!value.ignore) {
+            delete value.ignore
+            doc.settings.servers.server.push({ id, ...value })
+        }
     }
 
 

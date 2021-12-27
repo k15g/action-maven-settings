@@ -30,6 +30,7 @@ interface Repositories {
 
 export interface Repository {
     id?: string
+    ignore?: boolean
     name?: string
     url: string
     snapshots?: Snapshot
@@ -47,6 +48,7 @@ interface Servers {
 
 export interface Server {
     id?: string
+    ignore?: boolean
     username?: string
     password?: string
 }

@@ -10,6 +10,11 @@ export const defaults: { [key: string]: Repository } = {
 
 export const library: { [key: string]: Repository } = {
 
+    // GitHub
+    github: {
+        url: 'https://maven.pkg.github.com/${env.GITHUB_REPOSITORY}'
+    },
+
     // Sonatype Repository
     sonatype: {
         name: 'Sonatype Repository',
