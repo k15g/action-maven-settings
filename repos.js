@@ -7,6 +7,9 @@ exports.defaults = {
     },
 };
 exports.library = {
+    github: {
+        url: 'https://maven.pkg.github.com/${env.GITHUB_REPOSITORY}'
+    },
     sonatype: {
         name: 'Sonatype Repository',
         url: 'https://oss.sonatype.org/content/repositories/releases/',
