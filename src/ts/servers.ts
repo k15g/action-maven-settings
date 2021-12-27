@@ -1,6 +1,6 @@
-import { Server } from './model'
+import { ServerIndex } from './model'
 
-export const defaults: { [key: string]: Server } = {
+export const defaults: ServerIndex = {
     github: {
         username: '${env.GITHUB_ACTOR}',
         password: '${env.GITHUB_TOKEN}',

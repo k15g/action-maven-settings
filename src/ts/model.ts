@@ -28,7 +28,7 @@ interface Repositories {
     repository: Repository[]
 }
 
-export interface Repository {
+interface Repository {
     id?: string
     ignore?: boolean
     name?: string
@@ -38,6 +38,8 @@ export interface Repository {
     layout?: string
 }
 
+export type RepositoryIndex = { [key: string]: Repository }
+
 interface Snapshot {
     enabled?: boolean
 }
@@ -46,15 +48,17 @@ interface Servers {
     server: Server[]
 }
 
-export interface Server {
+interface Server {
     id?: string
     ignore?: boolean
     username?: string
     password?: string
 }
 
-export function initiateDocument() {
-    var doc: Document = {
+export type ServerIndex = { [key: string]: Server }
+
+export function initiateDocument(): Document {
+    return {
         settings: {
             '@xmlns': 'http://maven.apache.org/SETTINGS/1.0.0',
             '@xmlns:xsi': "http://www.w3.org/2001/XMLSchema-instance",
@@ -74,6 +78,4 @@ export function initiateDocument() {
             }
         }
     }
-
-    return doc
 }

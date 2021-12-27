@@ -1,18 +1,21 @@
-import { Repository } from './model'
+import { RepositoryIndex } from './model'
 
 // https://mvnrepository.com/repos
 
-export const defaults: { [key: string]: Repository } = {
+export const defaults: RepositoryIndex = {
     central: {
         url: 'https://repo1.maven.org/maven2',
     },
 }
 
-export const library: { [key: string]: Repository } = {
+export const library: RepositoryIndex = {
 
     // GitHub
     github: {
-        url: 'https://maven.pkg.github.com/${env.GITHUB_REPOSITORY}'
+        url: 'https://maven.pkg.github.com/${env.GITHUB_REPOSITORY}',
+        snapshots: {
+            enabled: true
+        }
     },
 
     // Sonatype Repository
