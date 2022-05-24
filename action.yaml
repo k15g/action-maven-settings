@@ -24,6 +24,6 @@ branding:
   icon: settings
 
 runs:
-  using: node12
+  using: node16
   main: index.js
   post: cleanup.js
